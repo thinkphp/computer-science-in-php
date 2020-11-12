@@ -1,0 +1,213 @@
+<html>
+<head>
+<style>
+
+body
+{
+background: url('bg.gif');
+font-family: arial;
+font-size:16px;
+}
+
+a
+{
+text-decoration: none;
+color:#407A8E;
+}
+
+#container ul
+{
+color:#407A8E;
+list-style: square;
+}
+
+a:hover
+{
+text-decoration: underline;
+}
+
+#container 
+{
+position:absolute;
+left:120px;
+top:70px;
+width:728px;
+height: 410px;
+font-family: arial;
+border:1px solid #9DB02A;
+overflow: hidden;
+}
+
+#container div 
+{
+position: absolute;
+width:728px;
+height:400px;
+background-color:#fff;
+}
+
+
+#container div h3
+{
+display: block;
+text-align: left;
+width:703px;
+height:30px;
+margin: 1px;
+border:1px solid #9DB02A;
+padding-left:20px;
+padding-top:9px;
+color:#576301;
+cursor: pointer;
+font-family:arial;
+font-size:13px;
+text-transform: uppercase;
+}
+
+#container div p 
+{
+display: block;
+text-align: justify;
+margin-right: 50px;
+padding-left: 40px;
+}
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.1.1/mootools-yui-compressed.js"></script>
+
+<script>
+window.addEvent('domready',function(){
+
+      var container = $$("#container .acc");
+
+      var amount = 315; var interval = 30;
+
+      var fx = new Fx.Elements(container,{wait: false,duration: 1000,transition: Fx.Transitions.backOut});
+
+          container.each(function(element,i){
+                    
+                     element.setStyle('top',i*interval);
+
+                     element.$tmp.getOrigBack = element.getFirst().getStyle('background-color');
+
+                     element.$tmp.getOrigTextColor = element.getFirst().getStyle('color');
+
+                     element.addEvent('mousedown',function(){
+
+                         var child = element.getFirst();
+
+                         child.setStyles({'background-color':'red','color':'#fff'});
+
+                              container.each(function(el,z){
+
+                                    if( z !=i ) el.getFirst().setStyles({
+                                                                         'background-color': el.$tmp.getOrigBack,
+
+                                                                         'color':element.$tmp.getOrigTextColor
+                                                                        });
+                              });
+
+                                        
+                         var obj = {};
+
+                                var e_top = element.getStyle('top').toInt();
+
+                                obj[i] = { 'top': [e_top,i*interval] };
+
+                                container.each(function(element,j){
+
+                                      if(i > j) obj[j] = {'top':[element.getStyle('top').toInt(),j*interval]};
+
+                                      if(i < j) obj[j] = {'top':[element.getStyle('top').toInt(),j*interval+amount]};
+
+                                });
+
+                         fx.start(obj);
+
+                      });//end handler mousedown
+
+          });//end each
+
+      
+      var headers = $$("#container h3");
+                 
+          headers.each(function(head,k){
+
+                  head.setStyle('opacity','0.8');
+
+              var fx = new Fx.Style(head,'opacity',{wait: false,duration:400});
+                            
+                  head.addEvent('mouseover',function(event){
+                
+                            fx.start(1.0);  
+                  }); 
+
+                 head.addEvent('mouseleave',function(event){
+                
+                            fx.start(0.8);  
+                  }); 
+                
+                    
+          }); 
+
+
+});
+</script>
+</head>
+
+
+<body>
+
+<div id="container">
+
+<div class="acc">
+<h3 style="background-color:#C9E714">Design Patterns Creational - Singletons, Abstract Factory</h3>
+<p>
+<ul>
+<li><a href="singleton/singleton.php" target="_blank">Singleton - Database</a></li>
+<li><a href="singleton/singleton2.php" target="_blank">Singleton - Array of states</a></li>
+<li><a href="singleton/singleton3.php" target="_blank">Singleton - Configuration File Singleton</a></li>
+<li><a href="factory/factory.php" target="_blank">Factory Method - Switch Document</a></li>
+</ul>
+</p>
+</div>
+
+
+<div class="acc">
+<h3 style="background-color:#C0D63B">Design Patterns Structural - Adapter, Composite</h3>
+<p>
+<ul>
+<li><a href="adapter/adapter.php" target="_blank">Adapter - Render Graph Salary</a></li>
+</ul>
+</p>
+</div>
+
+
+<div class="acc">
+<h3 style="background-color:#D0E35C">Design Patterns Behavioral - Strategy, Chain of Responsability, Observer, Iterator, Visitor</h3>
+<p>
+<ul>
+<li><a href="strategy/strategy.php" target="_blank">strategy - Car</a></li>
+<li><a href="strategy/strategy2.php" target="_blank">strategy - FilterWord</a></li>
+<li><a href="strategy/strategy3.php" target="_blank">strategy - Algorithms Sorting</a></li>
+<li><a href="observer/observer1.php" target="_blank">Observer - ExchangeRate</a></li>
+<li><a href="observer/observer2.php" target="_blank">Observer - AddTocart</a></li>
+<li><a href="observer/observer3.php" target="_blank">Observer - AddToList</a></li>
+<li><a href="chains/chainOfResponsability1.php" target="_blank">Chain of Responsability - URL Mapper</a></li>
+<li><a href="chains/chainOfResponsability2.php" target="_blank">Chain of Responsability - Command chain</a></li>
+<li><a href="visitor/visitor.php" target="_blank">Visitor - Min-Max Salary</a></li>
+<li><a href="iterator/iterator0.php" target="_blank">Iterator0</a></li>
+<li><a href="iterator/iterator1.php" target="_blank">Iterator1</a></li>
+<li><a href="iterator/iterator2.php" target="_blank">Iterator2</a></li>
+<li><a href="iterator/iterator3.php" target="_blank">Iterator3</a></li>
+
+</ul>
+</p>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
