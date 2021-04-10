@@ -1,1 +1,5 @@
-# Divide et Impera Method
+# Technique Divide et Impera
+
+In Action on Ideone:
+
+https://ideone.com/thinkphp/divideetimpera
